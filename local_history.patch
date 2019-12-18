@@ -1,0 +1,45 @@
+Index: app/src/main/java/com/example/youtubeparcer/ui/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/youtubeparcer/ui/MainActivity.kt	(date 1576669891000)
++++ app/src/main/java/com/example/youtubeparcer/ui/MainActivity.kt	(date 1576669891000)
+@@ -26,17 +26,16 @@
+         setContentView(R.layout.activity_main)
+         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+         initAdapter()
+-        isNetworkConnected()
++        fetchPlaylist()
+     }
+-
+     private fun isNetworkConnected() {
+         val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+         val isConnected: Boolean = activeNetwork?.isConnected == true
+         if (isConnected) {
+-            fetchPlaylist()
++            addIntoImageView()
+         } else {
+-            
++            imageView.setImageResource(R.drawable.image)
+             return
+         }
+     }
+@@ -61,11 +60,11 @@
+ 
+     private fun clickItem(item: ItemsItem) {
+         UiHelper().showToast(this, "${item.id} clicked")
+-        val intent = Intent(this, DetailsPlayActivity::class.java)
+-        intent.putExtra("id", item.id)
+-        intent.putExtra("title", item.snippet.title)
+-        intent.putExtra("channelId", item.snippet.channelId)
+-        intent.putExtra("etag", item.etag)
++        val intent= Intent(this, DetailsPlayActivity::class.java)
++        intent.putExtra("id",item.id)
++        intent.putExtra("title",item.snippet.title)
++        intent.putExtra("channelId",item.snippet.channelId)
++        intent.putExtra("etag",item.etag)
+         startActivity(intent)
+ 
+     }
