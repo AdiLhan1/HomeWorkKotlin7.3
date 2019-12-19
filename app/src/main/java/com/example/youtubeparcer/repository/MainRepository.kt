@@ -11,7 +11,7 @@ import javax.security.auth.callback.Callback
 
 class MainRepository {
     companion object {
-        val channel = "UC_IfiZu3VkesO3L58L9WPhA"
+        val channel = "UC0C-w0YjGpqDXGB8IHb662A"
         val apiKey = "AIzaSyCWK-EoCHecYMMFAvl-DI5iegR9s1WW20Y"
         val part = "snippet,contentDetails"
         val maxResult = "50"

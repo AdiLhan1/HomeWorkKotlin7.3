@@ -47,7 +47,7 @@ class PlayListAdapter(val function: (ItemsItem) -> Unit) :
         fun bind(item: ItemsItem) {
             Picasso
                 .get()
-                .load(item.snippet.thumbnails.default.url)
+                .load(item.snippet.thumbnails.medium.url)
                 .fit()
                 .centerCrop()
                 .into(image)

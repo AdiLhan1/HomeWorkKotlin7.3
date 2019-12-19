@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.InternetConnectionActivity"></activity>
         <activity android:name=".ui.detail_playlist.DetailsPlayActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>

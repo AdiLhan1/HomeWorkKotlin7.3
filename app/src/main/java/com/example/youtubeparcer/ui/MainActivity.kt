@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,6 +16,7 @@ import com.example.youtubeparcer.model.ItemsItem
 import com.example.youtubeparcer.model.PlaylistModel
 import com.example.youtubeparcer.ui.detail_playlist.DetailsPlayActivity
 import com.example.youtubeparcer.utils.UiHelper
+import kotlinx.android.synthetic.main.activity_internet_connection.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -36,8 +38,24 @@ class MainActivity : AppCompatActivity() {
         if (isConnected) {
             fetchPlaylist()
         } else {
-            val intent = Intent(this, InternetConnectionActivity::class.java)
-            startActivity(intent)
+            setContentView(R.layout.activity_internet_connection)
+            onClick()
+        }
+    }
+
+    private fun onClick() {
+        btn_try.setOnClickListener {
+            val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+            val isConnected: Boolean = activeNetwork?.isConnected == true
+            if (isConnected) {
+                fetchPlaylist()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Подключите интернет! и попробуйте еще раз", Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 
